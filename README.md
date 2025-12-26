@@ -1,16 +1,123 @@
-# React + Vite
+🔌 Circuit Sage
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Smart Way to Learn Digital Electronics
 
-Currently, two official plugins are available:
+📖 What is Circuit Sage?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Circuit Sage is an interactive learning platform designed to make Digital Electronics easy, visual, and practical.
+Instead of only reading theory from textbooks, Circuit Sage helps students understand how circuits actually work by combining concepts, logic, and simulation-style thinking.
 
-## React Compiler
+This project is built especially for:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🎓 Engineering students
 
-## Expanding the ESLint configuration
+👨‍🏫 Educators
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🧠 Self-learners struggling with digital electronics concepts
+
+❓ The Problem Circuit Sage Solves
+
+“I understand the theory, but I can’t build or visualize the circuit.”
+
+Most students face difficulty connecting:
+
+Boolean logic
+
+Truth tables
+
+Logic gates
+
+Real circuit behavior
+
+Circuit Sage bridges this gap by focusing on clarity, visualization, and structured learning.
+
+✨ Key Features
+
+🔍 Beginner-friendly explanation of digital electronics concepts
+
+🧩 Logic-based circuit understanding
+
+⚡ Fast and responsive modern UI
+
+🖥️ Built with modern web technologies
+
+📚 Designed for academic learning & projects
+
+(More features coming as the project evolves)
+
+🛠️ Tech Stack
+
+Frontend: React.js
+
+Build Tool: Vite
+
+Language: JavaScript
+
+Package Manager: npm
+
+🚀 Getting Started
+
+Follow these steps to run Circuit Sage locally.
+
+🔧 Prerequisites
+
+Make sure you have:
+
+Node.js (v18+ recommended)
+
+npm
+
+Git
+
+📥 Installation & Run
+
+1️⃣ Clone the repository
+
+git clone https://github.com/rpram143/circuit_sage.git
+
+
+2️⃣ Navigate into the project folder
+
+cd circuit_sage
+
+
+3️⃣ Install dependencies
+
+npm install
+
+
+4️⃣ Start the development server
+
+npm run dev
+
+🌐 Open in Browser
+
+Open your browser and go to:
+
+http://localhost:5173
+
+
+(or the URL shown in the terminal)
+
+🎉 Circuit Sage is now running!
+
+🧪 Project Status
+
+🚧 Currently under development
+New features, improvements, and optimizations are actively being added.
+
+🤝 Contributing
+
+Contributions are welcome!
+If you have ideas, improvements, or bug fixes:
+
+Fork the repository
+
+Create a new branch
+
+Submit a pull request
+
+⭐ Support
+
+If you like this project, don’t forget to star the repository ⭐
+It helps motivate further development!
