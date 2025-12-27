@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Play, RotateCcw, Save, Settings, Plus, MousePointer2, X, Cpu, Wifi, Radio, Zap, Monitor, ZoomIn, ZoomOut, Maximize } from 'lucide-react';
+import { ArrowLeft, Play, RotateCcw, Save, Settings, Plus, MousePointer2, X, Cpu, Wifi, Radio, Zap, Monitor, ZoomIn, ZoomOut, Maximize, CheckCircle2, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AIAssistant from '../components/AIAssistant';
 import { LAB_COMPONENTS } from '../data/labComponents';
 import LabSidebarRight from '../components/LabSidebarRight';
 import { runSimulationStep, runMCUCode } from '../utils/LabLogicEngine';
 
-export default function LabSimulator() {
+export default function LabSimulator({ testMode, onCheck }) {
     const navigate = useNavigate();
     const [isPlaying, setIsPlaying] = useState(false);
     const [components, setComponents] = useState([]);
@@ -710,6 +710,24 @@ export default function LabSimulator() {
                     <button className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
                         <Save className="w-5 h-5" />
                     </button>
+                    {testMode && (
+                        <div className="flex items-center gap-2 ml-2">
+                            <button
+                                onClick={() => window.dispatchEvent(new CustomEvent('reopen-lab-instructions'))}
+                                className="p-2 bg-white/5 hover:bg-white/10 text-cyan-400 rounded-xl border border-white/10 transition-all flex items-center gap-2 px-4 shadow-xl"
+                                title="View Instructions"
+                            >
+                                <BookOpen className="w-4 h-4" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">How to do it</span>
+                            </button>
+                            <button
+                                onClick={() => onCheck(components, wires, simState)}
+                                className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl text-sm font-black hover:shadow-lg hover:shadow-cyan-500/30 transition-all active:scale-95 animate-pulse border border-cyan-400/50"
+                            >
+                                <CheckCircle2 className="w-4 h-4" /> Verify Completion
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 <div className="flex items-center gap-4">
@@ -793,8 +811,8 @@ export default function LabSimulator() {
                                 const isHot = isPlaying && simState.pins[startPinKey] === 1;
 
                                 // Orthogonal path logic
-                                const midX = start.x + (end.x - start.x) / 2;
-                                const path = `M ${start.x} ${start.y} L ${midX} ${start.y} L ${midX} ${end.y} L ${end.x} ${end.y}`;
+                                const midX = (start.x || 0) + ((end.x || 0) - (start.x || 0)) / 2;
+                                const path = `M ${start.x || 0} ${start.y || 0} L ${midX} ${start.y || 0} L ${midX} ${end.y || 0} L ${end.x || 0} ${end.y || 0}`;
 
                                 return (
                                     <path
@@ -809,8 +827,12 @@ export default function LabSimulator() {
                             })}
                             {drawingWire && (() => {
                                 const start = getPinCoords(drawingWire.startCompId, drawingWire.startPinLabel, drawingWire.startPinSide);
-                                const midX = start.x + (drawingWire.currentX - start.x) / 2;
-                                const path = `M ${start.x} ${start.y} L ${midX} ${start.y} L ${midX} ${drawingWire.currentY} L ${drawingWire.currentX} ${drawingWire.currentY}`;
+                                const midX = (start.x || 0) + ((drawingWire.currentX || 0) - (start.x || 0)) / 2;
+                                const sx = start.x || 0;
+                                const sy = start.y || 0;
+                                const cx = drawingWire.currentX || 0;
+                                const cy = drawingWire.currentY || 0;
+                                const path = `M ${sx} ${sy} L ${midX} ${sy} L ${midX} ${cy} L ${cx} ${cy}`;
 
                                 return (
                                     <path

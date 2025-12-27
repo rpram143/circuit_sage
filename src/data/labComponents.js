@@ -210,7 +210,10 @@ export const LAB_COMPONENTS = {
     'LED Lamp': {
         category: 'OUTPUT',
         width: 40, height: 40,
-        pins: { left: [{ id: 'IN', label: 'IN', type: 'in' }], right: [] },
+        pins: {
+            left: [{ id: 'ANODE', label: 'A', type: 'in' }],
+            right: [{ id: 'CAT', label: 'K', type: 'ground' }]
+        },
         defaultProps: { color: 'red' }
     },
     'Push Button': {

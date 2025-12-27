@@ -201,7 +201,6 @@ export const ALL_MODULES = [
         xp: 800,
         icon: <BookOpen className="w-6 h-6" />
     },
-    // --- Project Modules ---
     {
         id: 301,
         title: "Arduino Workshop: Projects",
@@ -213,5 +212,19 @@ export const ALL_MODULES = [
         lessons: 3,
         xp: 1000,
         icon: <Cpu className="w-6 h-6" />
+    },
+    {
+        id: 401,
+        title: "Practical Board Exam: Basic",
+        desc: "Test your skills in the virtual lab. Complete challenges to earn the 'Circuit Ninja' certification.",
+        category: "Exams",
+        progress: 0,
+        locked: false,
+        completed: false,
+        lessons: 1, // One big test for now
+        xp: 2000,
+        type: 'TEST',
+        challengeId: 'arduino-blink',
+        icon: <BrainCircuit className="w-6 h-6 text-yellow-400" />
     }
 ];

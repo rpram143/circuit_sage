@@ -2,10 +2,10 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Bot, User, Sparkles } from 'lucide-react';
 
-export default function AIAssistant() {
+export default function AIAssistant({ challenge, isTestMode }) {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { id: 1, type: 'bot', text: "Hello! I'm Circuit Sage AI. Ask me anything about your lab or dashboard!" }
+        { id: 1, type: 'bot', text: isTestMode ? `Master, ready for the ${challenge?.title}? I have the schematics ready if you need a hint!` : "Hello! I'm Circuit Sage AI. Ask me anything about your lab or dashboard!" }
     ]);
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
@@ -29,10 +29,16 @@ export default function AIAssistant() {
 
         // Mock AI Response
         setTimeout(() => {
+            let responseText = "That's a great question! I'm currently in demo mode, but I can tell you that you're doing great with your circuits!";
+
+            if (isTestMode && (inputValue.toLowerCase().includes('hint') || inputValue.toLowerCase().includes('help'))) {
+                responseText = `Sure! Here is a tip for your challenge: ${challenge?.hint}`;
+            }
+
             const botMsg = {
                 id: Date.now() + 1,
                 type: 'bot',
-                text: "That's a great question! I'm currently in demo mode, but I can tell you that you're doing great with your circuits!"
+                text: responseText
             };
             setMessages(prev => [...prev, botMsg]);
             setIsTyping(false);
@@ -80,8 +86,8 @@ export default function AIAssistant() {
                                 >
                                     <div
                                         className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.type === 'user'
-                                                ? 'bg-blue-600 text-white rounded-tr-none'
-                                                : 'bg-slate-800 text-slate-200 border border-white/5 rounded-tl-none'
+                                            ? 'bg-blue-600 text-white rounded-tr-none'
+                                            : 'bg-slate-800 text-slate-200 border border-white/5 rounded-tl-none'
                                             }`}
                                     >
                                         {msg.text}

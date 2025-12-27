@@ -12,10 +12,17 @@ export default function ModuleCard({ module, delay }) {
             viewport={{ once: true }}
             transition={{ delay: delay * 0.1 }}
             className={`relative group glass-card rounded-2xl p-7 overflow-hidden transition-all duration-500 ${module.locked
-                    ? 'opacity-60 grayscale cursor-not-allowed'
-                    : 'cursor-pointer hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-cyan-500/50'
+                ? 'opacity-60 grayscale cursor-not-allowed'
+                : 'cursor-pointer hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-cyan-500/50'
                 }`}
-            onClick={() => !module.locked && navigate(`/module/${module.id}`)}
+            onClick={() => {
+                if (module.locked) return;
+                if (module.type === 'TEST') {
+                    navigate(`/lab/test/${module.challengeId}`);
+                } else {
+                    navigate(`/module/${module.id}`);
+                }
+            }}
         >
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -31,8 +38,8 @@ export default function ModuleCard({ module, delay }) {
 
             <div className="flex justify-between items-start mb-6 relative z-10">
                 <div className={`p-3.5 rounded-xl transition-colors duration-500 ${module.locked
-                        ? 'bg-slate-800 text-slate-500'
-                        : 'bg-white/5 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]'
+                    ? 'bg-slate-800 text-slate-500'
+                    : 'bg-white/5 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]'
                     }`}>
                     {module.icon}
                 </div>

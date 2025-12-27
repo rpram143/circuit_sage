@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import StudentDashboard from './pages/StudentDashboard';
 import ModuleViewer from './pages/ModuleViewer';
 import LabSimulator from './pages/LabSimulator';
+import LabTestRunner from './pages/LabTestRunner';
 import MyCourses from './pages/MyCourses';
 import Settings from './pages/Settings';
 import ProfessorDashboard from './pages/ProfessorDashboard';
@@ -64,6 +65,7 @@ function AnimatedRoutes() {
         {/* Specialized Views (No persistent sidebar for immersive experience) */}
         <Route path="/module/:moduleId" element={<PageWrapper><ModuleViewer /></PageWrapper>} />
         <Route path="/lab" element={<PageWrapper><LabSimulator /></PageWrapper>} />
+        <Route path="/lab/test/:testId" element={<PageWrapper><LabTestRunner /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );

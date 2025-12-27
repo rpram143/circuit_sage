@@ -1,123 +1,95 @@
-🔌 Circuit Sage
+# ⚡ Circuit Sage: The Smart Way to Learn Digital Electronics
 
-The Smart Way to Learn Digital Electronics
+[![Vite](https://img.shields.io/badge/Vite-7.2-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![Lucide](https://img.shields.io/badge/Lucide-Icons-F43F5E?style=for-the-badge&logo=lucide)](https://lucide-react.com/)
 
-📖 What is Circuit Sage?
+**Circuit Sage** is an immersive, AI-powered educational platform designed to bridge the gap between theoretical electronics and hands-on laboratory experience. Built for both students and professors, it transforms the browser into a high-fidelity virtual electronics lab.
 
-Circuit Sage is an interactive learning platform designed to make Digital Electronics easy, visual, and practical.
-Instead of only reading theory from textbooks, Circuit Sage helps students understand how circuits actually work by combining concepts, logic, and simulation-style thinking.
+---
 
-This project is built especially for:
+## 🚀 Key Features
 
-🎓 Engineering students
+### 🧪 State-of-the-Art Virtual Lab
+A high-performance simulation canvas featuring:
+- **Orthogonal Manhattan Wiring**: Clean, professional-grade circuit layouts with automatic right-angle routing.
+- **Snapping Grid System**: 20px precision grid for pixel-perfect component placement.
+- **Dynamic Physics Engine**: Real-time signal propagation through component nets. Wires "glow" when live!
+- **Interactive Component Library**: From basic logic gates to complex MCUs (Arduino Uno, ESP32, Pi Pico) and sensors (PIR, Ultrasonic, Potentiometers).
 
-👨‍🏫 Educators
+### 🎓 Immersive "Board Exams" (Test Mode)
+Don't just build—prove it. Our new **Practical Lab Runner** offers:
+- **Mission Briefings**: Challenges start with a formal set of objectives and instructions.
+- **Strict Verification**: The system verifies physical electrical connections (nets) and MCU code keywords to ensure true understanding.
+- **Real-Time Feedback**: Instant guidance if a circuit is wired incorrectly or code is missing logic.
 
-🧠 Self-learners struggling with digital electronics concepts
+### 🤖 AI Lab Tutor
+A built-in **AI Assistant** that acts as a 24/7 teaching assistant:
+- **Context-Aware Assistance**: The AI knows which challenge you are attempting.
+- **Guided Hints**: Instead of giving solutions, it provides progressive hints to help students solve problems themselves.
 
-❓ The Problem Circuit Sage Solves
+### 📊 Gamified Progress
+- **Course Dashboard**: 7 AI-powered learning modules from basic logic to advanced MCU applications.
+- **XP & Certification**: Earn rewards and track your journey from Novice to Sage.
 
-“I understand the theory, but I can’t build or visualize the circuit.”
+---
 
-Most students face difficulty connecting:
+## 🛠️ Technology Stack
 
-Boolean logic
+- **Core**: React 19 + Vite (for lightning-fast development)
+- **Animation**: Framer Motion (buttery smooth UI transitions and physical feedback)
+- **Styling**: Vanilla CSS + TailwindCSS (for the dashboard layout)
+- **Icons**: Lucide-React
+- **Logic**: Custom Javascript-based Simulation Engine (Manhattan wiring & Net-crawling)
 
-Truth tables
+---
 
-Logic gates
+## 📦 Getting Started
 
-Real circuit behavior
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- `npm` or `yarn`
 
-Circuit Sage bridges this gap by focusing on clarity, visualization, and structured learning.
+### Installation
 
-✨ Key Features
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/circuit-sage.git
+   cd circuit-sage
+   ```
 
-🔍 Beginner-friendly explanation of digital electronics concepts
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-🧩 Logic-based circuit understanding
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-⚡ Fast and responsive modern UI
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-🖥️ Built with modern web technologies
+---
 
-📚 Designed for academic learning & projects
+## 📐 Project Structure
 
-(More features coming as the project evolves)
+```bash
+src/
+├── components/          # Reusable UI (Sidebar, AI Assistant, Module Cards)
+├── data/                # Database of components, challenges, and lesson modules
+├── pages/               # Main VIEWS (Dashboard, Lab, Test Runner)
+├── utils/               # The "Brain" (Simulation Logic, Net Crawling, MCU Interpreters)
+└── assets/              # Global styles and design tokens
+```
 
-🛠️ Tech Stack
+---
 
-Frontend: React.js
+## 🛡️ Laboratory Safety
+*Remember: While this is a virtual lab, the logic follows real-world electronics principles. Short-circuiting your virtual Arduino Pin 13 to ground won't smoke your PC, but the software will definitely let you know it's a bad idea!*
 
-Build Tool: Vite
-
-Language: JavaScript
-
-Package Manager: npm
-
-🚀 Getting Started
-
-Follow these steps to run Circuit Sage locally.
-
-🔧 Prerequisites
-
-Make sure you have:
-
-Node.js (v18+ recommended)
-
-npm
-
-Git
-
-📥 Installation & Run
-
-1️⃣ Clone the repository
-
-git clone https://github.com/rpram143/circuit_sage.git
-
-
-2️⃣ Navigate into the project folder
-
-cd circuit_sage
-
-
-3️⃣ Install dependencies
-
-npm install
-
-
-4️⃣ Start the development server
-
-npm run dev
-
-🌐 Open in Browser
-
-Open your browser and go to:
-
-http://localhost:5173
-
-
-(or the URL shown in the terminal)
-
-🎉 Circuit Sage is now running!
-
-🧪 Project Status
-
-🚧 Currently under development
-New features, improvements, and optimizations are actively being added.
-
-🤝 Contributing
-
-Contributions are welcome!
-If you have ideas, improvements, or bug fixes:
-
-Fork the repository
-
-Create a new branch
-
-Submit a pull request
-
-⭐ Support
-
-If you like this project, don’t forget to star the repository ⭐
-It helps motivate further development!
+---
+*Created by [Antigravity](https://github.com/google-deepmind) for Advanced Agentic Coding*
