@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence, motion } from 'framer-motion';
 import LandingPage from './pages/LandingPage';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import StudentDashboard from './pages/StudentDashboard';
 import ModuleViewer from './pages/ModuleViewer';
 import LabSimulator from './pages/LabSimulator';
@@ -46,6 +47,7 @@ function AnimatedRoutes() {
         </Route>
 
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
+        <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
 
         {/* Student Routes */}
         <Route element={<StudentLayout />}>

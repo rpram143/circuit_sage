@@ -1,29 +1,44 @@
 import { motion } from 'framer-motion';
 import { Mail, Lock, Loader2, Github, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { auth } from '../utils/auth';
 
 export default function LoginForm({ role }) {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // Simulate API call
-        setTimeout(() => {
-            setLoading(false);
-            if (role === 'teacher') {
+        setError('');
+
+        try {
+            // Simulate brief delay
+            await new Promise(r => setTimeout(r, 1000));
+            const user = auth.login(email, password, role);
+
+            if (user.role === 'teacher') {
                 navigate('/professor');
             } else {
                 navigate('/dashboard');
             }
-        }, 2000);
+        } catch (err) {
+            setError(err.message);
+            setLoading(false);
+        }
     };
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
+            {error && (
+                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+                    {error}
+                </div>
+            )}
 
             <div className="space-y-4">
                 <div>
@@ -36,6 +51,8 @@ export default function LoginForm({ role }) {
                         </div>
                         <input
                             type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="block w-full pl-10 pr-3 py-2.5 bg-slate-900 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none transition-all"
                             placeholder={role === 'teacher' ? "prof.doe@university.edu" : "name@example.com"}
                             required
@@ -51,6 +68,8 @@ export default function LoginForm({ role }) {
                         </div>
                         <input
                             type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             className="block w-full pl-10 pr-3 py-2.5 bg-slate-900 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none transition-all"
                             placeholder="••••••••"
                             required
@@ -104,9 +123,9 @@ export default function LoginForm({ role }) {
 
             <p className="text-center text-sm text-slate-500">
                 Don't have an account?{" "}
-                <a href="#" className="font-medium text-cyan-400 hover:underline">
+                <Link to="/register" className="font-medium text-cyan-400 hover:underline">
                     Sign up for free
-                </a>
+                </Link>
             </p>
 
         </form>

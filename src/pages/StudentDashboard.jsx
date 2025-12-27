@@ -27,15 +27,19 @@ const modules = [
     }
 ];
 
+import { auth } from '../utils/auth';
+
 export default function StudentDashboard() {
     const navigate = useNavigate();
+    const user = auth.getCurrentUser() || { name: 'Student' };
+    const firstInitial = user.name.charAt(0).toUpperCase();
 
     return (
         <main className="p-6 md:p-12">
             {/* Header */}
             <header className="flex justify-between items-center mb-12">
                 <div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Welcome back, Ram 👋</h1>
+                    <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Welcome back, {user.name} 👋</h1>
                     <p className="text-slate-400">Ready to simulate some electrons?</p>
                 </div>
 
@@ -46,8 +50,8 @@ export default function StudentDashboard() {
                     <div className="w-10 h-10 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-slate-700 cursor-pointer">
                         <Bell className="w-5 h-5" />
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center text-slate-950 font-bold border-2 border-slate-900">
-                        R
+                    <div className="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center text-slate-950 font-bold border-2 border-slate-900 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                        {firstInitial}
                     </div>
                 </div>
             </header>

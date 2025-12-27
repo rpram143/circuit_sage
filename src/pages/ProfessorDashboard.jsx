@@ -1,7 +1,12 @@
 import { motion } from 'framer-motion';
 import { Users, BookOpen, TrendingUp, AlertCircle, Bell } from 'lucide-react';
 
+import { auth } from '../utils/auth';
+
 export default function ProfessorDashboard() {
+    const user = auth.getCurrentUser() || { name: 'Professor' };
+    const firstInitial = user.name.charAt(0).toUpperCase();
+
     const stats = [
         { title: "Total Students", value: "482", icon: <Users className="text-blue-400" />, trend: "+12%" },
         { title: "Active Modules", value: "8", icon: <BookOpen className="text-purple-400" />, trend: "Same" },
@@ -14,7 +19,7 @@ export default function ProfessorDashboard() {
             {/* Header */}
             <header className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Professor Dashboard</h1>
+                    <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Welcome back, {user.name} 👋</h1>
                     <p className="text-slate-400">Overview of your classes and student performance.</p>
                 </div>
 
@@ -22,8 +27,8 @@ export default function ProfessorDashboard() {
                     <div className="w-10 h-10 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-slate-700 cursor-pointer">
                         <Bell className="w-5 h-5" />
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-slate-950 font-bold border-2 border-slate-900">
-                        P
+                    <div className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-slate-950 font-bold border-2 border-slate-900 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+                        {firstInitial}
                     </div>
                 </div>
             </header>
