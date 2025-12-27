@@ -31,11 +31,10 @@ export default function RealWorldMode() {
                                     stroke={isReal ? "#fbbf24" : "#06b6d4"}
                                     strokeWidth="3"
                                     strokeLinejoin="round"
-                                    animate={{
-                                        d: isReal
-                                            ? "M0,150 L50,150 L65,55 L100,55 L115,150 L150,150 L165,55 L200,55 L215,150 L250,150 L265,55 L300,55 L315,150 L350,150 L365,55 L400,55"
-                                            : "M0,150 L50,150 L50,50 L100,50 L100,150 L150,150 L150,50 L200,50 L200,150 L250,150 L250,50 L300,50 L300,150 L350,150 L350,50 L400,50"
-                                    }}
+                                    animate={isReal
+                                        ? { d: "M0,150 L50,150 L65,55 L100,55 L115,150 L150,150 L165,55 L200,55 L215,150 L250,150 L265,55 L300,55 L315,150 L350,150 L365,55 L400,55" }
+                                        : { d: "M0,150 L50,150 L50,50 L100,50 L100,150 L150,150 L150,50 L200,50 L200,150 L250,150 L250,50 L300,50 L300,150 L350,150 L350,50 L400,50" }
+                                    }
                                     transition={{ duration: 0.5, ease: "easeInOut" }}
                                 />
                                 {/* Glitch artifacts in Real mode */}

@@ -6,24 +6,18 @@ import RealWorldMode from '../components/RealWorldMode';
 import ProfessorSection from '../components/ProfessorSection';
 import ComparisonSection from '../components/ComparisonSection';
 import RescueMissions from '../components/RescueMissions';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
 
 export default function LandingPage() {
     return (
-        <>
-            <Navbar />
-            <main>
-                <Hero />
-                <ProblemSection />
-                <SolutionSection />
-                <StudentJourney />
-                <RealWorldMode />
-                <ProfessorSection />
-                <ComparisonSection />
-                <RescueMissions />
-                <Footer />
-            </main>
-        </>
+        <main>
+            <Hero />
+            <ProblemSection />
+            <SolutionSection />
+            <StudentJourney />
+            <RealWorldMode />
+            <ProfessorSection />
+            <ComparisonSection />
+            <RescueMissions />
+        </main>
     );
 }

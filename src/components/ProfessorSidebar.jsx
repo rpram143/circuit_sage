@@ -14,7 +14,7 @@ export default function ProfessorSidebar() {
 
     return (
         <aside className="w-64 bg-slate-900 border-r border-white/5 flex-col hidden md:flex sticky top-0 h-screen">
-            <div className="p-6 flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="p-6 flex items-center gap-3 cursor-pointer" onClick={() => navigate('/professor')}>
                 <div className="p-1.5 bg-slate-800 rounded-lg border border-white/10">
                     <Cpu className="text-purple-400 w-5 h-5" />
                 </div>
