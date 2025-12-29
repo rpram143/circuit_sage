@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuit Sage - Redirecting...</title>
+    <script>
+        // GitHub Pages SPA redirect script
+        // This handles client-side routing for single-page applications
+
+        // Get the current path
+        const path = window.location.pathname.slice(1);
+        const search = window.location.search;
+        const hash = window.location.hash;
+
+        // Redirect to index.html with the path as a query parameter
+        // The app will read this and navigate to the correct route
+        if (path) {
+            window.location.replace(
+                window.location.origin +
+                window.location.pathname.split('/').slice(0, -1).join('/') +
+                '/?redirect=' +
+                encodeURIComponent(path + search + hash)
+            );
+        }
+    </script>
+</head>
+
+<body>
+    <div style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #fff;
+  ">
+        <div style="text-align: center;">
+            <h1 style="font-size: 2rem; margin-bottom: 1rem;">Circuit Sage</h1>
+            <p style="color: #94a3b8;">Redirecting...</p>
+        </div>
+    </div>
+</body>
+
+</html>
