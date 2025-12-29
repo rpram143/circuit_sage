@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Play, RotateCcw, Save, Settings, Plus, MousePointer2, X, Cpu, Wifi, Radio, Zap, Monitor, ZoomIn, ZoomOut, Maximize, CheckCircle2, BookOpen } from 'lucide-react';
+import { ArrowLeft, Play, RotateCcw, Save, Settings, Plus, MousePointer2, X, Cpu, Wifi, Radio, Zap, Monitor, ZoomIn, ZoomOut, Maximize, CheckCircle2, BookOpen, Download, Upload, FileDown, FileUp, FolderOpen, Import } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AIAssistant from '../components/AIAssistant';
 import { LAB_COMPONENTS } from '../data/labComponents';
@@ -14,9 +14,11 @@ export default function LabSimulator({ testMode, onCheck }) {
     const [wires, setWires] = useState([]);
     const [drawingWire, setDrawingWire] = useState(null);
     const [selectedComponentId, setSelectedComponentId] = useState(null);
+    const fileInputRef = useRef(null);
     const [simState, setSimState] = useState({ pins: {}, inputs: {} }); // Simulation State
     const [time, setTime] = useState(0);
     const [transform, setTransform] = useState({ x: 0, y: 0, scale: 1 });
+    const [learnTubeData, setLearnTubeData] = useState(null);
     const GRID_SIZE = 20;
 
     const canvasRef = useRef(null);
@@ -74,6 +76,21 @@ export default function LabSimulator({ testMode, onCheck }) {
         }
         return () => clearInterval(interval);
     }, [isPlaying, components, wires, time, simState]);
+
+    // Load circuit data from Learn Tube
+    useEffect(() => {
+        const circuitData = localStorage.getItem('circuitSageLabData');
+        if (circuitData) {
+            try {
+                const data = JSON.parse(circuitData);
+                setLearnTubeData(data);
+                // Clear the data after loading
+                localStorage.removeItem('circuitSageLabData');
+            } catch (err) {
+                console.error('Failed to load circuit data:', err);
+            }
+        }
+    }, []);
 
     // Helper to get component definition
     const getDef = (type) => LAB_COMPONENTS[type] || {};
@@ -244,6 +261,46 @@ export default function LabSimulator({ testMode, onCheck }) {
                 currentY: (e.clientY - canvasRect.top - transform.y) / transform.scale
             });
         }
+    };
+
+    // --- Save/Load Logic ---
+    const handleSave = () => {
+        const data = JSON.stringify({ components, wires }, null, 2);
+        const blob = new Blob([data], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `circuit-${Date.now()}.json`;
+        link.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const handleLoadClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const data = JSON.parse(event.target.result);
+                if (data.components && data.wires) {
+                    setComponents(data.components.map(c => ({
+                        ...c,
+                        id: typeof c.id === 'string' ? Date.now() + Math.random() : c.id // Ensure numeric-ish IDs if needed
+                    })));
+                    setWires(data.wires);
+                    setSimState({ pins: {}, inputs: {} });
+                }
+            } catch (err) {
+                console.error("Failed to parse circuit file:", err);
+                alert("Invalid circuit file format.");
+            }
+        };
+        reader.readAsText(file);
     };
 
     const applyZoom = (delta) => {
@@ -707,9 +764,27 @@ export default function LabSimulator({ testMode, onCheck }) {
                     >
                         <RotateCcw className="w-5 h-5" />
                     </button>
-                    <button className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
-                        <Save className="w-5 h-5" />
+                    <button
+                        onClick={handleSave}
+                        className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                        title="Download Circuit JSON"
+                    >
+                        <FileDown className="w-5 h-5" />
                     </button>
+                    <button
+                        onClick={handleLoadClick}
+                        className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                        title="Upload Circuit JSON"
+                    >
+                        <FileUp className="w-5 h-5" />
+                    </button>
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        accept=".json"
+                        className="hidden"
+                    />
                     {testMode && (
                         <div className="flex items-center gap-2 ml-2">
                             <button

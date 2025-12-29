@@ -1,0 +1,183 @@
+{
+    "name": "Full Adder Circuit",
+    "description": "A 3-input full adder implemented with XOR, AND, and OR gates. Calculates Sum and Carry Out.",
+    "components": [
+        {
+            "id": 1,
+            "type": "Toggle Switch",
+            "x": 40,
+            "y": 100,
+            "name": "Input A"
+        },
+        {
+            "id": 2,
+            "type": "Toggle Switch",
+            "x": 40,
+            "y": 200,
+            "name": "Input B"
+        },
+        {
+            "id": 3,
+            "type": "Toggle Switch",
+            "x": 40,
+            "y": 300,
+            "name": "Carry In"
+        },
+        {
+            "id": 4,
+            "type": "XOR",
+            "x": 200,
+            "y": 120
+        },
+        {
+            "id": 5,
+            "type": "XOR",
+            "x": 400,
+            "y": 150
+        },
+        {
+            "id": 6,
+            "type": "AND",
+            "x": 200,
+            "y": 350
+        },
+        {
+            "id": 7,
+            "type": "AND",
+            "x": 400,
+            "y": 280
+        },
+        {
+            "id": 8,
+            "type": "OR",
+            "x": 600,
+            "y": 320
+        },
+        {
+            "id": 9,
+            "type": "LED Lamp",
+            "x": 800,
+            "y": 150,
+            "color": "green",
+            "name": "Sum"
+        },
+        {
+            "id": 10,
+            "type": "LED Lamp",
+            "x": 800,
+            "y": 320,
+            "color": "red",
+            "name": "Carry Out"
+        }
+    ],
+    "wires": [
+        {
+            "id": 101,
+            "startCompId": 1,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 4,
+            "endPinLabel": "A",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 102,
+            "startCompId": 2,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 4,
+            "endPinLabel": "B",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 103,
+            "startCompId": 4,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 5,
+            "endPinLabel": "A",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 104,
+            "startCompId": 3,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 5,
+            "endPinLabel": "B",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 105,
+            "startCompId": 5,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 9,
+            "endPinLabel": "ANODE",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 106,
+            "startCompId": 1,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 6,
+            "endPinLabel": "A",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 107,
+            "startCompId": 2,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 6,
+            "endPinLabel": "B",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 108,
+            "startCompId": 4,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 7,
+            "endPinLabel": "A",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 109,
+            "startCompId": 3,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 7,
+            "endPinLabel": "B",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 110,
+            "startCompId": 6,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 8,
+            "endPinLabel": "A",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 111,
+            "startCompId": 7,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 8,
+            "endPinLabel": "B",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 112,
+            "startCompId": 8,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 10,
+            "endPinLabel": "ANODE",
+            "endPinSide": "LEFT"
+        }
+    ]
+}

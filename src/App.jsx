@@ -8,6 +8,7 @@ import ModuleViewer from './pages/ModuleViewer';
 import LabSimulator from './pages/LabSimulator';
 import LabTestRunner from './pages/LabTestRunner';
 import MyCourses from './pages/MyCourses';
+import LearnTube from './pages/LearnTube';
 import Settings from './pages/Settings';
 import ProfessorDashboard from './pages/ProfessorDashboard';
 import ManageStudents from './pages/ManageStudents';
@@ -53,6 +54,7 @@ function AnimatedRoutes() {
         <Route element={<StudentLayout />}>
           <Route path="/dashboard" element={<PageWrapper><StudentDashboard /></PageWrapper>} />
           <Route path="/courses" element={<PageWrapper><MyCourses /></PageWrapper>} />
+          <Route path="/learntube" element={<PageWrapper><LearnTube /></PageWrapper>} />
           <Route path="/settings" element={<PageWrapper><Settings /></PageWrapper>} />
         </Route>
 

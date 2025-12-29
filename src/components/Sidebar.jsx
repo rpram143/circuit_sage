@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Zap, Trophy, Settings, LogOut, Cpu } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Zap, Settings, LogOut, Cpu, Search, Youtube } from 'lucide-react';
 
 export default function Sidebar() {
     const navigate = useNavigate();
@@ -8,8 +8,8 @@ export default function Sidebar() {
     const menuItems = [
         { name: "Dashboard", icon: <LayoutDashboard />, path: "/dashboard" },
         { name: "My Courses", icon: <BookOpen />, path: "/courses" },
+        { name: "Learn Tube", icon: <Youtube />, path: "/learntube" },
         { name: "Lab Simulator", icon: <Zap />, path: "/lab" },
-        { name: "Leaderboard", icon: <Trophy />, path: "/leaderboard" },
         { name: "Settings", icon: <Settings />, path: "/settings" },
     ];
 
@@ -22,7 +22,18 @@ export default function Sidebar() {
                 <span className="font-bold text-white">Circuit Sage</span>
             </div>
 
-            <nav className="flex-1 px-4 space-y-2 mt-4">
+            <div className="px-4 mb-4">
+                <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="w-full bg-slate-800 border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 text-sm"
+                    />
+                </div>
+            </div>
+
+            <nav className="flex-1 px-4 space-y-2">
                 {menuItems.map((item) => {
                     const isActive = location.pathname === item.path;
                     return (

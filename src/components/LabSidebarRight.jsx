@@ -1,6 +1,108 @@
-import { X, Save, RefreshCw } from 'lucide-react';
+import { X, Save, RefreshCw, BookOpen, Cpu, Zap, Code } from 'lucide-react';
 
-export default function LabSidebarRight({ selectedComponent, updateComponent, onClose }) {
+export default function LabSidebarRight({ selectedComponent, updateComponent, onClose, learnTubeData }) {
+    // Show Learn Tube data if no component is selected
+    if (!selectedComponent && learnTubeData) {
+        return (
+            <aside className="w-80 bg-slate-900 border-l border-white/5 flex flex-col h-full shadow-2xl z-20">
+                {/* Header */}
+                <div className="h-14 border-b border-white/5 flex items-center justify-between px-4 bg-gradient-to-r from-orange-500/20 to-red-500/20">
+                    <div className="flex items-center gap-2">
+                        <BookOpen className="w-4 h-4 text-orange-400" />
+                        <h2 className="font-bold text-orange-400 text-sm">Learn Tube Circuit</h2>
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                    {/* Project Info */}
+                    <div>
+                        <h3 className="text-sm font-bold text-white mb-2">{learnTubeData.projectName}</h3>
+                        <p className="text-xs text-slate-400">{learnTubeData.theory?.concept || 'Circuit Project'}</p>
+                    </div>
+
+                    {/* Components List */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-2">
+                            <Cpu className="w-4 h-4 text-cyan-400" />
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Required Components</label>
+                        </div>
+                        <div className="space-y-2">
+                            {learnTubeData.components.map((comp, idx) => (
+                                <div key={idx} className="bg-slate-800 rounded-lg p-2 border border-white/5">
+                                    <div className="flex items-start justify-between">
+                                        <span className="text-xs text-white font-semibold">{comp.name}</span>
+                                        <span className="text-[10px] bg-cyan-500/20 text-cyan-400 px-1.5 py-0.5 rounded">×{comp.quantity}</span>
+                                    </div>
+                                    <p className="text-[10px] text-slate-400 mt-1">{comp.specs}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Wiring Instructions */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-2">
+                            <Zap className="w-4 h-4 text-yellow-400" />
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Wiring Steps</label>
+                        </div>
+                        <div className="space-y-2">
+                            {learnTubeData.wiring.map((wire, idx) => (
+                                <div key={idx} className="bg-slate-800 rounded-lg p-2 border border-white/5">
+                                    <div className="flex items-start gap-2">
+                                        <span className="flex-shrink-0 w-5 h-5 bg-cyan-500 rounded-full flex items-center justify-center text-[10px] font-bold text-white">{wire.step}</span>
+                                        <p className="text-xs text-slate-300 flex-1">{wire.instruction}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Code */}
+                    <div>
+                        <div className="flex items-center gap-2 mb-2">
+                            <Code className="w-4 h-4 text-green-400" />
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Code</label>
+                        </div>
+                        <div className="bg-slate-950 border border-white/10 rounded-lg p-3">
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="px-2 py-0.5 bg-cyan-500/10 text-cyan-400 rounded text-[10px] font-medium border border-cyan-500/20">
+                                    {learnTubeData.code.platform}
+                                </span>
+                            </div>
+                            <pre className="text-green-400 text-[10px] font-mono leading-relaxed overflow-x-auto">
+                                {learnTubeData.code.content}
+                            </pre>
+                        </div>
+                    </div>
+
+                    {/* Theory */}
+                    {learnTubeData.theory && (
+                        <div>
+                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Theory</label>
+                            <div className="bg-slate-800 rounded-lg p-3 border border-white/5 space-y-2">
+                                <p className="text-xs text-slate-300">{learnTubeData.theory.explanation}</p>
+                                {learnTubeData.theory.keyPoints && learnTubeData.theory.keyPoints.length > 0 && (
+                                    <div>
+                                        <p className="text-[10px] font-bold text-cyan-400 mb-1">Key Points:</p>
+                                        <ul className="space-y-1">
+                                            {learnTubeData.theory.keyPoints.map((point, idx) => (
+                                                <li key={idx} className="text-[10px] text-slate-400 flex items-start gap-1">
+                                                    <span className="text-cyan-400">•</span>
+                                                    <span>{point}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </aside>
+        );
+    }
+
     if (!selectedComponent) return null;
 
     const handleChange = (key, value) => {

@@ -1,0 +1,104 @@
+{
+    "name": "SR Latch Circuit",
+    "description": "A basic Set-Reset latch using two cross-coupled NOR gates. Demonstrates state retention and feedback loops.",
+    "components": [
+        {
+            "id": 11,
+            "type": "Toggle Switch",
+            "x": 100,
+            "y": 140,
+            "name": "Set (S)"
+        },
+        {
+            "id": 12,
+            "type": "Toggle Switch",
+            "x": 100,
+            "y": 340,
+            "name": "Reset (R)"
+        },
+        {
+            "id": 13,
+            "type": "NOR",
+            "x": 350,
+            "y": 150
+        },
+        {
+            "id": 14,
+            "type": "NOR",
+            "x": 350,
+            "y": 330
+        },
+        {
+            "id": 15,
+            "type": "LED Lamp",
+            "x": 650,
+            "y": 150,
+            "color": "blue",
+            "name": "Q"
+        },
+        {
+            "id": 16,
+            "type": "LED Lamp",
+            "x": 650,
+            "y": 330,
+            "color": "orange",
+            "name": "Q Not"
+        }
+    ],
+    "wires": [
+        {
+            "id": 201,
+            "startCompId": 11,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 13,
+            "endPinLabel": "A",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 202,
+            "startCompId": 12,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 14,
+            "endPinLabel": "B",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 203,
+            "startCompId": 13,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 15,
+            "endPinLabel": "ANODE",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 204,
+            "startCompId": 14,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 16,
+            "endPinLabel": "ANODE",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 205,
+            "startCompId": 13,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 14,
+            "endPinLabel": "A",
+            "endPinSide": "LEFT"
+        },
+        {
+            "id": 206,
+            "startCompId": 14,
+            "startPinLabel": "OUT",
+            "startPinSide": "RIGHT",
+            "endCompId": 13,
+            "endPinLabel": "B",
+            "endPinSide": "LEFT"
+        }
+    ]
+}
